@@ -15,7 +15,10 @@
   </div>
 </template>
 <script>
-import firebase from "firebase"
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import db from "../components/firebaseInit";
 export default {
   name: "Signup",
   data() {
@@ -28,15 +31,22 @@ export default {
     signup(e) {
       e.preventDefault();
       console.log("Hello");
-      firebase.auth().createUserWithEmailAndPassword(
-        this.email,
-        this.password
-      ).then((user) => {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((user) => {
+          db.collection("users").doc(user.user.uid).set({
+            dailyQuote: "",
+            dailyQuoteAuthor: "",
+            categoryPreferences: [],
+            authorPreferences: [],
+            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+          });
           alert("Account created for " + user.user.email);
-          this.$router.push("/")
+          this.$router.push("/");
         })
         .catch((error) => {
-          alert(error)
+          alert(error);
         });
     },
   },
