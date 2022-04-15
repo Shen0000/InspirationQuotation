@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import json
 from quotes import *
 
 app = Flask(__name__)
@@ -12,7 +11,7 @@ def hello():
 
 @app.route('/get-quotes', methods=['GET'])
 def getQuotes():
-  
+
     topics = request.args.getlist('query')
     authors = request.args.getlist('author')
     # print(type(search))
