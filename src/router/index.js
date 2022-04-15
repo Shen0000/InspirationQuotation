@@ -3,6 +3,7 @@ import Login from "../views/Login.vue"
 import Home from "../views/Home.vue"
 import Signup from "../views/Signup.vue"
 import Quotes from "../views/Quotes.vue"
+import Settings from "../views/Settings.vue"
 
 const routes = [
     {
@@ -21,11 +22,15 @@ const routes = [
         component: Signup
     },
     {
-        path: '/quotes',
+        path: "/quotes",
         name: "Quotes",
         component: Quotes
+    },
+    {
+        path: "/settings",
+        name: "Settings",
+        component: Settings
     }
-
 ]
 const router = createRouter({
     history: createWebHistory(),
