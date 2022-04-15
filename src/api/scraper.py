@@ -3,8 +3,6 @@ import json
 import requests
 import re
 
-from torch import get_autocast_cpu_dtype
-
 def get_categories():
 
     url = "http://www.brainyquote.com/quotes/topics.html"
