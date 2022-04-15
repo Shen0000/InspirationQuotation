@@ -12,6 +12,7 @@
         </li>
         <li v-if="$store.state.loggedIn"><button @click="logout">Logout</button></li>
       </ul>
+      <router-link to="/quotes">Quotes</router-link>
     </div>
     <router-view />
   </div>
