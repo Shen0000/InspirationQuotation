@@ -5,16 +5,20 @@
         <li v-if="!$store.state.loggedIn">
           <router-link to="/login">Login</router-link>
         </li>
-        <router-link to="/daily"><li>View Daily Quote</li></router-link>
+        <li v-if="$store.state.loggedIn">
+          <router-link to="/daily">View Daily Quote</router-link>
+        </li>
         <li>
           {{ this.$store.state.username }}
         </li>
         <li v-if="$store.state.loggedIn">
           <button @click="logout">Logout</button>
         </li>
-        <router-link to="/quotes">Quotes</router-link>
-        <br />
-        <li><router-link to="/settings">Settings</router-link></li>
+        <li><router-link to="/quotes">Quotes</router-link></li>
+
+        <li v-if="$store.state.loggedIn">
+          <router-link to="/settings">Settings</router-link>
+        </li>
       </ul>
     </div>
     <router-view />
@@ -37,10 +41,10 @@ export default {
         .auth()
         .signOut()
         .then(() => {
-          this.$router.push("/");
           this.$store.commit("setUsername", "");
           this.$store.commit("setLogin", "");
           alert("Signed out!");
+          this.$router.push("/");
         });
     },
   },

@@ -5,8 +5,6 @@ import Signup from "../views/Signup.vue";
 import Quotes from "../views/Quotes.vue";
 import Settings from "../views/Settings.vue";
 import DailyQuote from "../views/DailyQuote.vue";
-import firebase from "firebase/app";
-import "firebase/auth";
 
 const routes = [
   {
@@ -49,24 +47,5 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-});
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiresAuth)) {
-    // if not logged in
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        next({
-          path: "/login",
-          query: {
-            redirect: to.fullPath,
-          },
-        });
-      } else {
-        next();
-      }
-    });
-  } else {
-    next();
-  }
 });
 export default router;
