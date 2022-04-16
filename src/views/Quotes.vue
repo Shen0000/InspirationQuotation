@@ -21,7 +21,7 @@ export default {
     },
     methods: {
       getData() {
-        fetch(`http://localhost:5000/get-quotes?query=men&author=/authors/eminem-quotes`)
+        fetch(`http://localhost:5000/get-quotes?query=memory&author=/authors/mark-twain-quotes`)
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
