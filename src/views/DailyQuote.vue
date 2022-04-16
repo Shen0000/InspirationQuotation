@@ -3,10 +3,6 @@
     <h2>Daily Quote</h2>
     <br />
     <div v-if="loading">Loading Quote, please wait</div>
-    <div v-else-if="categoryPreferences.length === 0">
-      Go to settings and choose your preferences before viewing your daily
-      quote!
-    </div>
     <div v-else>
       {{ '"' + dailyQuote + '"' }}
       <br />
@@ -19,6 +15,8 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/auth";
 import "firebase/firestore";
+import Categories from "../../db/categories.json";
+import Authors from "../../db/authors.json";
 import db from "../components/firebaseInit";
 export default {
   name: "Login",
@@ -29,6 +27,8 @@ export default {
       author: "",
       categoryPreferences: [],
       authorPreferences: [],
+      allCategories: JSON.parse(Categories),
+      allAuthors: JSON.parse(Authors),
     };
   },
   methods: {
@@ -39,8 +39,16 @@ export default {
             .doc(user.uid)
             .get()
             .then((res) => {
-              this.categoryPreferences = res.data().categoryPreferences;
-              this.authorPreferences = res.data().authorPreferences;
+              if (
+                res.data().categoryPreferences.length > 0 ||
+                res.data().categoryPreferences.length > 0
+              ) {
+                this.categoryPreferences = res.data().categoryPreferences;
+                this.authorPreferences = res.data().authorPreferences;
+              } else {
+                this.categoryPreferences = this.allCategories;
+                this.authorPreferences = this.allAuthors;
+              }
               if (
                 res.data().dailyQuote.length > 0 &&
                 this.checkDates(res.data().lastLogin.toDate(), new Date())
