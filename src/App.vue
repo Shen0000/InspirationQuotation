@@ -25,7 +25,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
-import db from "./components/firebaseInit";
 export default {
   name: "App",
   components: {},
@@ -48,9 +47,6 @@ export default {
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        db.collection("users").doc(user.uid).update({
-          lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-        });
         console.log(user.email);
         this.$store.commit("setUsername", user.email);
         this.$store.commit("setLogin", true);
