@@ -4,15 +4,19 @@
     <br />
     <div v-if="loading">Loading Quote, please wait</div>
     <div v-else>
-      {{ '"' + dailyQuote + '"' }}
-      <br />
-      {{ author }}
+      <Tilt :options="this.options" :parallax="true" class="background">
+          <h1>"{{ dailyQuote }}"</h1>
+          <h2>{{ author }}</h2>
+        <!-- <div class="author">
+          {{author}}
+        </div> -->
+      </Tilt>
     </div>
   </div>
 </template>
 <script>
+import Tilt from "../components/Tilt";
 import firebase from "firebase/app";
-import "firebase/auth";
 import "firebase/auth";
 import "firebase/firestore";
 import Categories from "../../db/categories.json";
@@ -20,6 +24,9 @@ import Authors from "../../db/authors.json";
 import db from "../components/firebaseInit";
 export default {
   name: "Login",
+  components: {
+    Tilt,
+  },
   data() {
     return {
       loading: true,
@@ -29,6 +36,14 @@ export default {
       authorPreferences: [],
       allCategories: JSON.parse(Categories),
       allAuthors: JSON.parse(Authors),
+      options: {
+        max: 25,
+        perspective: 1000,
+        scale: 1.05,
+        speed: 500,
+        easing: "cubic-bezier(.03,.98,.52,.99)",
+        glare: true,
+      },
     };
   },
   methods: {
@@ -119,3 +134,27 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.background {
+  height: 50vh;
+  width: 50vw;
+  background-image: linear-gradient(red, yellow);
+  display: flex;
+  flex-direction: column;
+	align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.background h1 {
+  transform: translateZ(50px);
+  /* font-size: 20px; */
+}
+
+.background h2 {
+  transform: translateZ(30px);
+}
+</style>
