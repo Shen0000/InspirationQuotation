@@ -3,7 +3,7 @@
     <h2>Daily Quote</h2>
     <br />
     <div v-if="loading">Loading Quote, please wait</div>
-    <div v-else-if="categoryPreferences.length == 0">
+    <div v-else-if="categoryPreferences.length === 0">
       Go to settings and choose your preferences before viewing your daily
       quote!
     </div>
@@ -41,13 +41,22 @@ export default {
             .then((res) => {
               this.categoryPreferences = res.data().categoryPreferences;
               this.authorPreferences = res.data().authorPreferences;
-              if (res.data().dailyQuote.length > 0) {
+              if (
+                res.data().dailyQuote.length > 0 &&
+                this.checkDates(res.data().lastLogin.toDate(), new Date())
+              ) {
                 this.dailyQuote = res.data().dailyQuote;
                 this.author = res.data().dailyQuoteAuthor;
                 this.loading = false;
+                console.log(
+                  this.checkDates(res.data().lastLogin.toDate(), new Date())
+                );
               } else {
                 this.getQuote();
               }
+              db.collection("users").doc(user.uid).update({
+                lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+              });
             })
             .catch((err) => console.error(err));
         } else {
@@ -70,7 +79,6 @@ export default {
       } else if (this.authorPreferences.includes(randomCat)) {
         const formattedName = randomCat.replace(" ", "-") + "-quotes";
         query = `http://localhost:5000/get-quotes?author=/authors/${formattedName}`;
-        console.log(query);
       }
       fetch(query)
         .then((response) => response.json())
@@ -89,6 +97,13 @@ export default {
           });
         })
         .catch((err) => console.error(err));
+    },
+    checkDates(d1, d2) {
+      return (
+        d1.getFullYear() === d2.getFullYear() &&
+        d1.getMonth() === d2.getMonth() &&
+        d1.getDate() === d2.getDate()
+      );
     },
   },
   created() {
