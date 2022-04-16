@@ -1,45 +1,72 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Login from "../views/Login.vue"
-import Home from "../views/Home.vue"
-import Signup from "../views/Signup.vue"
-import Quotes from "../views/Quotes.vue"
-import Settings from "../views/Settings.vue"
-import DailyQuote from "../views/DailyQuote.vue"
+import { createRouter, createWebHistory } from "vue-router";
+import Login from "../views/Login.vue";
+import Home from "../views/Home.vue";
+import Signup from "../views/Signup.vue";
+import Quotes from "../views/Quotes.vue";
+import Settings from "../views/Settings.vue";
+import DailyQuote from "../views/DailyQuote.vue";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 const routes = [
-    {
-        path: "/",
-        name: "Home",
-        component: Home, 
+  {
+    path: "/",
+    name: "Home",
+    component: Home,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    component: Signup,
+  },
+  {
+    path: "/quotes",
+    name: "Quotes",
+    component: Quotes,
+  },
+  {
+    path: "/settings",
+    name: "Settings",
+    component: Settings,
+    meta: {
+      requiresAuth: true,
     },
-    {
-        path: "/login",
-        name: "Login",
-        component: Login
+  },
+  {
+    path: "/daily",
+    name: "DailyQuote",
+    component: DailyQuote,
+    meta: {
+      requiresAuth: true,
     },
-    {
-        path: "/signup",
-        name: "Signup",
-        component: Signup
-    },
-    {
-        path: "/quotes",
-        name: "Quotes",
-        component: Quotes
-    },
-    {
-        path: "/settings",
-        name: "Settings",
-        component: Settings
-    },
-    {
-        path: "/daily",
-        name: "DailyQuote",
-        component: DailyQuote,
-    }
-]
+  },
+];
 const router = createRouter({
-    history: createWebHistory(),
-    routes
-  })
-export default router
+  history: createWebHistory(),
+  routes,
+});
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    // if not logged in
+    firebase.auth().onAuthStateChanged((user) => {
+      if (!user) {
+        next({
+          path: "/login",
+          query: {
+            redirect: to.fullPath,
+          },
+        });
+      } else {
+        next();
+      }
+    });
+  } else {
+    next();
+  }
+});
+export default router;
