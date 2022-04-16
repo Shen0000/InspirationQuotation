@@ -41,7 +41,7 @@ export default {
             .then((res) => {
               if (
                 res.data().categoryPreferences.length > 0 ||
-                res.data().categoryPreferences.length > 0
+                res.data().authorPreferences.length > 0
               ) {
                 this.categoryPreferences = res.data().categoryPreferences;
                 this.authorPreferences = res.data().authorPreferences;
