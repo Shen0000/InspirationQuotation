@@ -69,4 +69,8 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+.navbar {
+  border-style: solid;
+}
 </style>

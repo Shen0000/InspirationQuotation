@@ -29,3 +29,5 @@ __pycache__/
 
 # firebase config
 firebaseConfig.js
+
+.venv
