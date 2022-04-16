@@ -4,6 +4,7 @@ import Home from "../views/Home.vue"
 import Signup from "../views/Signup.vue"
 import Quotes from "../views/Quotes.vue"
 import Settings from "../views/Settings.vue"
+import DailyQuote from "../views/DailyQuote.vue"
 
 const routes = [
     {
@@ -30,6 +31,11 @@ const routes = [
         path: "/settings",
         name: "Settings",
         component: Settings
+    },
+    {
+        path: "/daily",
+        name: "DailyQuote",
+        component: DailyQuote,
     }
 ]
 const router = createRouter({

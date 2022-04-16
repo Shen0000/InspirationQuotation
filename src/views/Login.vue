@@ -19,6 +19,7 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/auth";
+import db from "../components/firebaseInit";
 export default {
   name: "Login",
   data() {
@@ -36,6 +37,9 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
           alert("You are logged in as " + user.user.email);
+          db.collection("users").doc(user.user.uid).update({
+            lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+          });
           console.log(user.user.email);
           this.$store.commit("setUsername", user.user.email);
           this.$store.commit("setLogin", true);
