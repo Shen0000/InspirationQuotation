@@ -63,6 +63,9 @@ export default {
 </script>
 
 <style>
+body {
+  background-color: #64DFDF;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -79,5 +82,8 @@ ul {
 
 .navbar {
   border-style: solid;
+}
+.nav-link {
+    text-decoration: none;
 }
 </style>
