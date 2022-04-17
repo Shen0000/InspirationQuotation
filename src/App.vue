@@ -1,45 +1,55 @@
 <template>
   <div>
-    <ul class="navbar">
-      <li>
-        <router-link to="/">
-          <img
-            src="./assets/iq_logo.png"
-            alt="logo"
-            width="60"
-            height="60"
-            class="logo"
-          />
-        </router-link>
-      </li>
-      <!-- <li>
-        <router-link to="/quotes" class="nav-element">Quotes</router-link>
-      </li> -->
-      <li v-if="$store.state.loggedIn">
-        <router-link to="/daily" class="nav-element">Daily Quote</router-link>
-      </li>
-      <li v-if="$store.state.loggedIn">
-        <router-link to="/settings" class="nav-element">Settings</router-link>
-      </li>
-      <li>
-        <div style="width: 60vw;"></div>
-      </li>
-      <li>
-        <p style="padding: 20px;">{{ this.$store.state.username }}</p>
-      </li>
-      <li v-if="!$store.state.loggedIn">
-        <router-link to="/login" class="nav-element login-button">Login</router-link>
-      </li>
-      <li v-if="$store.state.loggedIn">
-        <button @click="logout" class="nav-element login-button">Logout</button>
-      </li>
-    </ul>
+    <div class="navbar">
+      <ul>
+        <div class="floatleft">
+        <li>
+          <router-link to="/">
+            <img
+              src="./assets/iq_logo.png"
+              alt="logo"
+              width="60"
+              height="60"
+              class="logo"
+            />
+          </router-link>
+        </li>
+        <!-- <li>
+          <router-link to="/quotes" class="nav-element">Quotes</router-link>
+        </li> -->
+        <li v-if="$store.state.loggedIn">
+          <router-link to="/daily" class="nav-element">Daily Quote</router-link>
+        </li>
+        <li v-if="$store.state.loggedIn">
+          <router-link to="/settings" class="nav-element">Settings</router-link>
+        </li>
+        </div>
+        <div class="floatright">
+        <li>
+          <p style="padding: 20px;">{{ this.$store.state.username }}</p>
+        </li>
+        <li v-if="!$store.state.loggedIn">
+          <router-link to="/login" class="nav-element login-button">Login</router-link>
+        </li>
+        <li v-if="$store.state.loggedIn">
+          <button @click="logout" class="nav-element login-button">Logout</button>
+        </li>
+        </div>
+      </ul>
+    </div>
 
     <br />
 
     <div class="main-container">
       <router-view />
     </div>
+    <footer>
+      <ul class="social-list">
+        <li class="social-list__item">
+          <a class="social-list__link" href="https://github.com/Shen0000/InspirationQuotation" target="_blank"><i class="fab fa-github" aria-hidden="true"></i></a>
+        </li>
+      </ul>
+    </footer>
   </div>
 </template>
 
@@ -104,17 +114,15 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #988cf3;
+  background-color: transparent;
   width: 100%;
-  display:flex;
-  align-items: center;
 }
 
 .navbar li {
   color: white;
   font-size: 14px;
   height: 100%;
-  line-height: 100%;
+  padding: 10px;
 }
 
 .navbar li a {
@@ -124,6 +132,7 @@ ul {
   padding: 14px 16px;
   text-decoration: none;
   height: 100%;
+  transition: all 1s;
 }
 .navbar li button {
   float: right;
@@ -135,6 +144,7 @@ ul {
   cursor: pointer;
   color: white;
   font-size: 14px;
+  transition: all 1s;
 }
 .navbar li p {
   float: right;
@@ -143,19 +153,37 @@ ul {
 }
 /* Change the link color to #111 (black) on hover */
 .navbar li a:hover {
-  background-color: #111;
+  color: rgb(248, 168, 255);
 }
 .navbar li button:hover {
-  background-color: #111;
+  color: rgb(248, 168, 255);
 }
 .navbar img {
   vertical-align: text-top;
+  transition: all 1s;
 }
+
+.navbar img:hover {
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+
 .main-container {
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  min-height: 100vh;
+  /*the above is*/
+  color: rgb(233, 215, 215);
+  background-color: #222;
+  /* transition: background-color 2s, color 2s; */
 }
 .navbar {
   background-image: linear-gradient(#988cf3,#222);
+  width: 100%;
+  transition: all 1s;
 }
 .nav-element {
   vertical-align: middle;
@@ -163,5 +191,48 @@ ul {
 .login-button {
   position: relative;
   /* float: right; */
+}
+footer {
+	background-color: rgb(0, 0, 0);
+  /* padding: 3vw; */
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  height: 15%;
+  width: 100%;
+}
+.social-list__link:focus,
+.social-list__link:hover {
+	opacity: .8;
+	outline: none;
+}
+.social-list__item:hover {
+	transform: scale(1.1);
+}
+.social-list {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	margin: 2em 0;
+	padding: 0;
+}
+.social-list__item {
+	transition: transform 250ms ease-in-out;
+	margin: 0 .5em;
+}
+.social-list__link {
+	font-size: 40px;
+	color: white;
+	padding: .5em;
+    transition: color 2s;
+}
+.floatleft {
+  float: left;
+  display: flex;
+  align-items: center;
+}
+.floatright{ 
+  float: right;
+  display: flex;
+  align-items: center;
 }
 </style>
