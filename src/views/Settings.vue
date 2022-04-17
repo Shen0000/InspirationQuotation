@@ -29,6 +29,7 @@
           multiple
           v-model="currentCategoryPreferences"
           :options="categories"
+          class="select"
         ></v-select>
       </div>
       <div class="authors-select">
@@ -37,6 +38,7 @@
           multiple
           v-model="currentAuthorPreferences"
           :options="authors"
+          class="select"
         ></v-select>
       </div>
     </div>
@@ -121,6 +123,20 @@ export default {
 </script>
 
 <style scoped>
+
+.select {
+  --vs-controls-color: #d3a6fd;
+  --vs-border-color: #654dbd;
+  --vs-dropdown-bg: #222;
+  --vs-dropdown-color: var(--text-color-primary);
+  --vs-dropdown-option-color: var(--text-color-primary);
+  --vs-selected-bg: #654dbd;
+  --vs-selected-color: #eeeeee;
+  --vs-search-input-color: #eeeeee;
+  --vs-dropdown-option--active-bg: #7743ca;
+  --vs-dropdown-option--active-color: #f8f53f;
+}
+
 .v-select-wrapper {
   display: flex;
   flex-direction: row;

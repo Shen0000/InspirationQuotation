@@ -6,12 +6,9 @@
     <div v-else>
       <Tilt :options="this.options" :parallax="true" class="background">
         <div class="blockquote">
-          <h1>{{ dailyQuote }}</h1>
-          <h2>{{ author }}</h2>
+          <h1 class="quote">{{ dailyQuote }}</h1>
+          <h2 class="author">{{ author }}</h2>
         </div>
-        <!-- <div class="author">
-          {{author}}
-        </div> -->
       </Tilt>
       <h4>Come back tomorrow for another quote!</h4>
     </div>
@@ -153,14 +150,16 @@ export default {
   transform: perspective(1000px);
 }
 
-.background h1 {
-  transform: translateZ(50px);
-  /* font-size: 20px; */
+.quote {
+  font-family: "Square Peg";
+  font-size: 5rem;
 }
 
-.background h2 {
-  transform: translateZ(30px);
+.author {
+  font-size: 3rem; 
+  /* doesn't actually do anything */
 }
+
 .blockquote {
   position: relative;
   color: white;
@@ -168,6 +167,8 @@ export default {
   border-bottom: solid 1px;
   padding: 30px;
   margin-bottom: 40px;
+  transform: translateZ(50px);
+  /* font-family: "Square Peg"; */
 }
 .blockquote::before {
   position: absolute;

@@ -5,7 +5,7 @@ import router from './router'
 import vSelect from 'vue-select'
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
-import '../node_modules/vue-select/dist/vue-select.css'
+import 'vue-select/dist/vue-select.css'
 import './components/firebaseInit'
 
 

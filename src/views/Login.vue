@@ -153,7 +153,7 @@ button:hover {
   --button-text: rgb(0, 0, 0);
   --button-hover: #6930c3;
   --button-hover-text: #64dfdf;
-  background: #64dfdf;
+  background: #222;
   --background: #f80000;
   --text-color-primary: #64dfdf;
   --vs-controls-color: #664cc3;
