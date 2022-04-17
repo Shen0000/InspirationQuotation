@@ -5,11 +5,19 @@
     <h2>Quote Preferences you have chosen:</h2>
     <!-- {{ [...categoryPreferences, ...authorPreferences].join(", ") }} -->
     <div class="grid-container">
-      <div class="grid-item" v-for="preference in categoryPreferences" v-bind:key="preference.id">
-        <p>{{preference}}</p>
+      <div
+        class="grid-item"
+        v-for="preference in categoryPreferences"
+        v-bind:key="preference.id"
+      >
+        <p>{{ preference }}</p>
       </div>
-      <div class="grid-item" v-for="preference in authorPreferences" v-bind:key="preference.id">
-        <p>{{preference}}</p>
+      <div
+        class="grid-item"
+        v-for="preference in authorPreferences"
+        v-bind:key="preference.id"
+      >
+        <p>{{ preference }}</p>
       </div>
     </div>
     <br />
@@ -32,9 +40,11 @@
         ></v-select>
       </div>
     </div>
-    
+
     <!-- <p v-for="option in combined" v-bind:key="option.id">{{option}}</p> -->
-    <button @click="changeSettings" class="settings-button"><span>Update settings</span></button>
+    <button @click="changeSettings" class="settings-button">
+      <span>Update settings</span>
+    </button>
   </div>
 </template>
 
@@ -82,15 +92,22 @@ export default {
       });
     },
     changeSettings() {
-      console.log("Settings updated!");
       this.authorPreferences = this.currentAuthorPreferences;
       this.categoryPreferences = this.currentCategoryPreferences;
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
-          db.collection("users").doc(user.uid).update({
-            authorPreferences: this.authorPreferences,
-            categoryPreferences: this.categoryPreferences,
-          });
+          db.collection("users")
+            .doc(user.uid)
+            .update({
+              authorPreferences: this.authorPreferences,
+              categoryPreferences: this.categoryPreferences,
+            })
+            .then(() => {
+              this.$toast.open({
+                message: "Settings saved!",
+                type: "success",
+              });
+            });
         } else {
           console.log("User must login");
         }
@@ -104,7 +121,6 @@ export default {
 </script>
 
 <style scoped>
-
 .v-select-wrapper {
   display: flex;
   flex-direction: row;
@@ -136,7 +152,7 @@ export default {
 }
 
 .grid-item {
-  background-color:#988cf3;
+  background-color: #988cf3;
   border-radius: 5px;
   box-sizing: border-box;
   width: 250px;
@@ -157,7 +173,7 @@ export default {
   border-radius: 4px;
   background-color: #988cf3;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-size: 18px;
   padding: 20px;
@@ -175,7 +191,7 @@ export default {
 }
 
 .settings-button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -191,5 +207,4 @@ export default {
   opacity: 1;
   right: 0;
 }
-
 </style>

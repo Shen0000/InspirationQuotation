@@ -13,6 +13,7 @@
           {{author}}
         </div> -->
       </Tilt>
+      <h4>Come back tomorrow for another quote!</h4>
     </div>
   </div>
 </template>
@@ -160,7 +161,14 @@ export default {
 .background h2 {
   transform: translateZ(30px);
 }
-
+.blockquote {
+  position: relative;
+  color: white;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  padding: 30px;
+  margin-bottom: 40px;
+}
 .blockquote::before {
   position: absolute;
   content: "“";
@@ -190,13 +198,6 @@ export default {
   line-height: 1;
   margin: 0;
   padding-top: 20px;
-}
-.blockquote {
-  position: relative;
-  color: white;
-  border-top: solid 1px;
-  border-bottom: solid 1px;
-  padding: 30px;
 }
 .loader {
   border: 16px solid #f3f3f3; /* Light grey */

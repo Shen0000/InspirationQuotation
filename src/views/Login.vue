@@ -39,14 +39,22 @@ export default {
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
         .then((user) => {
-          alert("You are logged in as " + user.user.email);
+          this.$toast.open({
+            message: "You are logged in as " + user.user.email,
+            type: "success",
+            onDismiss: () => {
+              this.$router.push("/");
+            },
+          });
           console.log(user.user.email);
           this.$store.commit("setUsername", user.user.email);
           this.$store.commit("setLogin", true);
-          this.$router.push("/");
         })
         .catch((error) => {
-          alert(error);
+          this.$toast.open({
+            message: error,
+            type: "error",
+          });
         });
     },
   },

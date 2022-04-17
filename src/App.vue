@@ -58,8 +58,13 @@ export default {
         .then(() => {
           this.$store.commit("setUsername", "");
           this.$store.commit("setLogin", "");
-          alert("Signed out!");
-          this.$router.push("/");
+          this.$toast.open({
+            message: "Signed out!",
+            type: "success",
+            onDismiss: () => {
+              this.$router.push("/");
+            },
+          });
         });
     },
   },
