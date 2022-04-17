@@ -45,7 +45,18 @@ const routes = [
   },
 ];
 const router = createRouter({
+  
   history: createWebHistory(),
   routes,
+  scrollBehavior (to) {
+    if (to.hash) {
+      console.log("Scroll")
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      };
+    }
+    return { top: 0 };  // Go to the top of the page if no hash
+  },
 });
 export default router;
