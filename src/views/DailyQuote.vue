@@ -83,7 +83,10 @@ export default {
             })
             .catch((err) => console.error(err));
         } else {
-          console.log("User must login");
+          this.$toast.open({
+            message: "Sign in before viewing your daily quote",
+            type: "warning",
+          });
         }
       });
     },
@@ -156,7 +159,7 @@ export default {
 }
 
 .author {
-  font-size: 3rem; 
+  font-size: 3rem;
   /* doesn't actually do anything */
 }
 

@@ -111,7 +111,10 @@ export default {
               });
             });
         } else {
-          console.log("User must login");
+          this.$toast.open({
+            message: "Sign in before editing settings",
+            type: "warning",
+          });
         }
       });
     },
@@ -123,7 +126,6 @@ export default {
 </script>
 
 <style scoped>
-
 .select {
   --vs-controls-color: #d3a6fd;
   --vs-border-color: #654dbd;
