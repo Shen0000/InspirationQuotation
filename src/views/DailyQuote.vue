@@ -2,11 +2,13 @@
   <div>
     <h2>Daily Quote</h2>
     <br />
-    <div v-if="loading">Loading Quote, please wait</div>
+    <div v-if="loading" class="loader"></div>
     <div v-else>
       <Tilt :options="this.options" :parallax="true" class="background">
-          <h1>"{{ dailyQuote }}"</h1>
+        <div class="blockquote">
+          <h1>{{ dailyQuote }}</h1>
           <h2>{{ author }}</h2>
+        </div>
         <!-- <div class="author">
           {{author}}
         </div> -->
@@ -137,13 +139,14 @@ export default {
 
 <style scoped>
 .background {
-  height: 50vh;
+  height: auto;
   width: 50vw;
-  background-image: linear-gradient(red, yellow);
+  background-image: linear-gradient(#000, #988cf3);
   display: flex;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
   justify-content: center;
+  padding: 50px;
   margin: 0 auto;
   transform-style: preserve-3d;
   transform: perspective(1000px);
@@ -156,5 +159,60 @@ export default {
 
 .background h2 {
   transform: translateZ(30px);
+}
+
+.blockquote::before {
+  position: absolute;
+  content: "“";
+  color: rgb(255, 255, 255);
+  font-size: 10rem;
+  transform: translateY(-33%);
+  line-height: 1;
+  top: 0px;
+  left: 20px;
+}
+.blockquote::after {
+  position: absolute;
+  content: "”";
+  color: rgb(0, 0, 0);
+  font-size: 10rem;
+  line-height: 1;
+  transform: translateY(83%);
+  right: 20px;
+  bottom: 0px;
+}
+
+.blockquote h2 {
+  position: relative;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding-top: 20px;
+}
+.blockquote {
+  position: relative;
+  color: white;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  padding: 30px;
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #988cf3; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

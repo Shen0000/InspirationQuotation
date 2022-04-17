@@ -78,7 +78,7 @@ export default {
 
 <style>
 body {
-  background-color: white;
+  background-color: #222;
   margin: 0;
 }
 #app {
@@ -86,7 +86,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 ul {
@@ -94,7 +94,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #988cf3;
   width: 100%;
 }
 
@@ -114,7 +114,7 @@ li a {
 }
 li button {
   float: right;
-  background-color: #333;
+  background-color: #988cf3;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -136,7 +136,7 @@ li button:hover {
   background-color: #111;
 }
 img {
-  vertical-align: top;
+  vertical-align: text-top;
 }
 .main-container {
   margin-top: 100px;
