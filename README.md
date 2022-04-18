@@ -16,28 +16,28 @@
 	* Once the Firestore Database is created, hit Start Collection, and name it "users." The project will ask you to create a document, but the contents of the document do not matter.
 	* Finally, go back to the Project Overview and click the Add App button, specifically the web one. Register the app (no need to select the "set up Firebase hosting" option). Once the app is registered, select the contents of the variable firebaseConfig and copy it to your clipboard. The contents should look like this:
 
-	```
-	{
+```
+{
 	apiKey: "api-key",
 	authDomain: "domain",
 	projectId: "projectID",
 	storageBucket: "storage",
 	messagingSenderId: "ID",
 	appId: "ID"
-	};
-	```
+};
+```
 	* Make sure to select just the contents of the firebase Config variable, nothing else. Then navigate to the src folder and then to the components folder of the Vue app. In the components folder create a file named firebaseConfig.js. In the file type ```export default``` and paste the contents of the copied object. The file should look something like this:
 
-	```
-	export default  {
+```
+export default  {
 	apiKey: "api-key",
 	authDomain: "domain",
 	projectId: "projectID",
 	storageBucket: "storage",
 	messagingSenderId: "ID",
 	appId: "ID"
-	};
-	```
+};
+```
 
 ## Project Setup
 * After cloning and navigating to the repository, run ```npm install``` to install node modules.
