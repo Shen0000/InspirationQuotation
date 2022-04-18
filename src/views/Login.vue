@@ -4,7 +4,6 @@
     <router-link to="/signup" class="nav-link"
       ><button>Register</button></router-link
     >
-    {{}}
     <form class="login-box">
       <div class="email-address">
         <label for="email"><b> Email </b></label>
@@ -52,7 +51,7 @@ export default {
         })
         .catch((error) => {
           this.$toast.open({
-            message: error,
+            message: error.message,
             type: "error",
           });
         });
