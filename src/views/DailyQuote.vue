@@ -2,17 +2,21 @@
   <div>
     <h2>Daily Quote</h2>
     <br />
-    <div v-if="loading">Loading Quote, please wait</div>
+    <div v-if="loading" class="loader"></div>
     <div v-else>
-      {{ '"' + dailyQuote + '"' }}
-      <br />
-      {{ author }}
+      <Tilt :options="this.options" :parallax="true" class="background">
+        <div class="blockquote">
+          <h1 class="quote">{{ dailyQuote }}</h1>
+          <h2 class="author">{{ author }}</h2>
+        </div>
+      </Tilt>
+      <h4>Come back tomorrow for another quote!</h4>
     </div>
   </div>
 </template>
 <script>
+import Tilt from "../components/Tilt";
 import firebase from "firebase/app";
-import "firebase/auth";
 import "firebase/auth";
 import "firebase/firestore";
 import Categories from "../../db/categories.json";
@@ -20,6 +24,9 @@ import Authors from "../../db/authors.json";
 import db from "../components/firebaseInit";
 export default {
   name: "Login",
+  components: {
+    Tilt,
+  },
   data() {
     return {
       loading: true,
@@ -29,6 +36,14 @@ export default {
       authorPreferences: [],
       allCategories: JSON.parse(Categories),
       allAuthors: JSON.parse(Authors),
+      options: {
+        max: 25,
+        perspective: 1000,
+        scale: 1.05,
+        speed: 500,
+        easing: "cubic-bezier(.03,.98,.52,.99)",
+        glare: true,
+      },
     };
   },
   methods: {
@@ -68,7 +83,10 @@ export default {
             })
             .catch((err) => console.error(err));
         } else {
-          console.log("User must login");
+          this.$toast.open({
+            message: "Sign in before viewing your daily quote",
+            type: "warning",
+          });
         }
       });
     },
@@ -119,3 +137,87 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.background {
+  height: auto;
+  width: 50vw;
+  background-image: linear-gradient(#000, #988cf3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+}
+
+.quote {
+  font-family: "Square Peg";
+  font-size: 5rem;
+}
+
+.author {
+  font-size: 3rem;
+  /* doesn't actually do anything */
+}
+
+.blockquote {
+  position: relative;
+  color: white;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  padding: 30px;
+  margin-bottom: 40px;
+  transform: translateZ(50px);
+  /* font-family: "Square Peg"; */
+}
+.blockquote::before {
+  position: absolute;
+  content: "“";
+  color: rgb(255, 255, 255);
+  font-size: 10rem;
+  transform: translateY(-33%);
+  line-height: 1;
+  top: 10px;
+  left: 20px;
+}
+.blockquote::after {
+  position: absolute;
+  content: "”";
+  color: rgb(0, 0, 0);
+  font-size: 10rem;
+  line-height: 1;
+  transform: translateY(83%);
+  right: 20px;
+  bottom: 0px;
+}
+
+.blockquote h2 {
+  position: relative;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
+  padding-top: 20px;
+}
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #988cf3; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>

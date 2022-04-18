@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Home from "../views/Home.vue";
 import Signup from "../views/Signup.vue";
-import Quotes from "../views/Quotes.vue";
 import Settings from "../views/Settings.vue";
 import DailyQuote from "../views/DailyQuote.vue";
 
@@ -23,11 +22,6 @@ const routes = [
     component: Signup,
   },
   {
-    path: "/quotes",
-    name: "Quotes",
-    component: Quotes,
-  },
-  {
     path: "/settings",
     name: "Settings",
     component: Settings,
@@ -45,7 +39,17 @@ const routes = [
   },
 ];
 const router = createRouter({
+  
   history: createWebHistory(),
   routes,
+  scrollBehavior (to) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      };
+    }
+    return { top: 0 };  // Go to the top of the page if no hash
+  },
 });
 export default router;
