@@ -100,6 +100,7 @@ export default {
         console.log(user.email);
         this.$store.commit("setUsername", user.email);
         this.$store.commit("setLogin", true);
+        console.log("Logged in from before", user);
       }
     });
   },
@@ -107,14 +108,14 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Square+Peg&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&family=Square+Peg&display=swap');
 
 body {
   background-color: #222;
   margin: 0;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -132,7 +133,7 @@ ul {
 
 .navbar li {
   color: white;
-  font-size: 14px;
+  font-size: 1.2rem;
   height: 100%;
   padding: 10px;
 }
@@ -151,11 +152,12 @@ ul {
   background-color: transparent;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
+  /* text-decoration: none; */
   border: none;
   cursor: pointer;
   color: white;
-  font-size: 14px;
+  font-size: 1.2rem;
+  font-family: "Montserrat", sans-serif;
   transition: all 1s;
 }
 .navbar li p {
@@ -189,7 +191,7 @@ ul {
   scrollbar-width: none; /* Firefox */
   min-height: 100vh;
   /*the above is*/
-  color: rgb(233, 215, 215);
+  color: rgb(255, 255, 255);
   background-color: #222;
   /* transition: background-color 2s, color 2s; */
 }

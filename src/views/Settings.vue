@@ -187,6 +187,7 @@ export default {
 }
 
 .settings-button {
+  font-family: 'Montserrat', sans-serif;
   display: inline-block;
   border-radius: 4px;
   background-color: #988cf3;
@@ -195,7 +196,7 @@ export default {
   text-align: center;
   font-size: 18px;
   padding: 20px;
-  width: 200px;
+  width: 210px;
   transition: all 0.5s;
   cursor: pointer;
   margin: 5px;
