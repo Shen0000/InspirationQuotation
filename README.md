@@ -26,7 +26,7 @@
 	appId: "ID"
 };
 ```
-	* Make sure to select just the contents of the firebase Config variable, nothing else. Then navigate to the src folder and then to the components folder of the Vue app. In the components folder create a file named firebaseConfig.js. In the file type ```export default``` and paste the contents of the copied object. The file should look something like this:
+Make sure to select just the contents of the firebase Config variable, nothing else. Then navigate to the src folder and then to the components folder of the Vue app. In the components folder create a file named firebaseConfig.js. In the file type ```export default``` and paste the contents of the copied object. The file should look something like this:
 
 ```
 export default  {
