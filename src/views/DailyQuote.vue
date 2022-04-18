@@ -71,9 +71,6 @@ export default {
                 this.dailyQuote = res.data().dailyQuote;
                 this.author = res.data().dailyQuoteAuthor;
                 this.loading = false;
-                console.log(
-                  this.checkDates(res.data().lastLogin.toDate(), new Date())
-                );
               } else {
                 this.getQuote();
               }

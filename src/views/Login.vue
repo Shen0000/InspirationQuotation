@@ -33,7 +33,6 @@ export default {
   methods: {
     login(e) {
       e.preventDefault();
-      console.log("Hello");
       firebase
         .auth()
         .signInWithEmailAndPassword(this.email, this.password)
@@ -45,7 +44,6 @@ export default {
               this.$router.push("/");
             },
           });
-          console.log(user.user.email);
           this.$store.commit("setUsername", user.user.email);
           this.$store.commit("setLogin", true);
         })
@@ -63,29 +61,28 @@ export default {
 body {
   margin: 0;
   padding: 0;
-  background-color: #6abadeba;
-  font-family: "Arial";
 }
 .login-box {
-  width: 382px;
+  width: 50vw;
+  max-width: 400px;
   overflow: hidden;
   margin: auto;
   margin: 20 0 0 450px;
   padding: 80px;
-  background: #23463f;
+  background: #988cf3;
   border-radius: 15px;
 }
 h2 {
   text-align: center;
-  color: #277582;
+  color: rgb(233, 215, 215);
   padding: 20px;
 }
 label {
-  color: #6abadeba;
+  color: #000;
   font-size: 17px;
 }
 #email {
-  width: 300px;
+  width: 80%;
   height: 30px;
   border: none;
   border-radius: 3px;
@@ -93,8 +90,7 @@ label {
   margin: 8px;
 }
 #password {
-  width: 300px;
-  height: 30px;
+  width: 80%;
   border: none;
   border-radius: 3px;
   padding-left: 8px;
@@ -139,31 +135,10 @@ button:hover {
   /* transition: color 0s, background-color 0s; */
 }
 .login {
-  --color: #8e3d35;
-  --color-secondary: red;
-  --nav: #252525;
-  --nav-link: #a10ae7;
-  --nav-link-exact: #ee37cf;
-  --body: #6930c3;
-  --footer: #2f1544;
-  --social: #80ffdb;
-  --border: #eb7a39;
   --button: #80ffdb;
   --button-text: rgb(0, 0, 0);
   --button-hover: #6930c3;
   --button-hover-text: #64dfdf;
   background: #222;
-  --background: #f80000;
-  --text-color-primary: #64dfdf;
-  --vs-controls-color: #664cc3;
-  --vs-border-color: #664cc3;
-  --vs-dropdown-bg: #282c34;
-  --vs-dropdown-color: #cc99cd;
-  --vs-dropdown-option-color: #cc99cd;
-  --vs-selected-bg: #664cc3;
-  --vs-selected-color: #eeeeee;
-  --vs-search-input-color: #eeeeee;
-  --vs-dropdown-option--active-bg: #664cc3;
-  --vs-dropdown-option--active-color: #eeeeee;
 }
 </style>

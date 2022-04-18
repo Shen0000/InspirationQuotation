@@ -26,8 +26,9 @@
     </p>
     <strong v-if="!$store.state.loggedIn">
       <router-link to="/login" class="nav-element login-button"
-              >Login</router-link
-            > and configure your preferred quote settings to get started!
+        >Login</router-link
+      >
+      and configure your preferred quote settings to get started!
     </strong>
   </div>
 </template>

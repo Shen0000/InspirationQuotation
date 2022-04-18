@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "../views/Login.vue";
 import Home from "../views/Home.vue";
 import Signup from "../views/Signup.vue";
-import Quotes from "../views/Quotes.vue";
 import Settings from "../views/Settings.vue";
 import DailyQuote from "../views/DailyQuote.vue";
 
@@ -21,11 +20,6 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: Signup,
-  },
-  {
-    path: "/quotes",
-    name: "Quotes",
-    component: Quotes,
   },
   {
     path: "/settings",
@@ -50,7 +44,6 @@ const router = createRouter({
   routes,
   scrollBehavior (to) {
     if (to.hash) {
-      console.log("Scroll")
       return {
         el: to.hash,
         behavior: 'smooth',

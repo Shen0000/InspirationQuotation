@@ -100,7 +100,6 @@ export default {
         console.log(user.email);
         this.$store.commit("setUsername", user.email);
         this.$store.commit("setLogin", true);
-        console.log("Logged in from before", user);
       }
     });
   },
