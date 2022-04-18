@@ -50,3 +50,4 @@ export default  {
 ## Run Project Locally
 * To run the project, navigate to the root directory and type ```npm run serve``` to run the Vue app.
 * Then run the Flask app by typing ```cd src/api``` and ```flask run```.
+	* You should get the output: ```Running on http://127.0.0.1:5000``` if not, close any application runnining on port 5000 before doing ```flask run```
