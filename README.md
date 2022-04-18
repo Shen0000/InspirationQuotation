@@ -1,4 +1,7 @@
-# inspirationquotation
+# Inspiration Quotation
+
+## About
+* This project makes every day a little less ordinary by providing an inspirational quote from someone famous each day, customized to the user's preferences. It allows users to select specific categories and people that they would like to get quotes from on a daily basis, and provides a new quote each day sourced from [Brainy Quote](https://brainyquote.com).
 
 ## Mission Statement
 * Inspiration Quotation seeks to inspire and motivate through the words of those who have already had success in life. With our Daily Quote, we hope to push you to become a better you every day, and we strive to personalize our message to your interests through our preferences page. At IQ, you won’t find anything superficial or generalized; every quote will be tailored to who you are to maximize your potential and improve your mindset each and every day.
