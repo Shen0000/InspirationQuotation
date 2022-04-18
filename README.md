@@ -2,6 +2,15 @@
 
 ## About
 * This project makes every day a little less ordinary by providing an inspirational quote from someone famous each day, customized to the user's preferences. It allows users to select specific categories and people that they would like to get quotes from on a daily basis, and provides a new quote each day sourced from [Brainy Quote](https://brainyquote.com).
+* This project was built using the Vue.js as our frontend framework, Flask for our backend API, and Firebase for login and storing user data.
+* When using the site for the first time, follow these steps:
+	1. Go to ```Login``` in the nav.
+	2. Click the ```Register``` button.
+	3. Sign up using an email and a 6+ character password (you will automatically be signed in).
+	4. Go to ```Settings``` in the nav.
+	5. Choose your preferences using the ```Categories``` and ```People``` dropdowns.
+	6. Click the ```Update Preferences``` button to save your preferences.
+	7. Click ```Daily Quote``` in the nav and enjoy your daily quote!
 
 ## Mission Statement
 * Inspiration Quotation seeks to inspire and motivate through the words of those who have already had success in life. With our Daily Quote, we hope to push you to become a better you every day, and we strive to personalize our message to your interests through our preferences page. At IQ, you won’t find anything superficial or generalized; every quote will be tailored to who you are to maximize your potential and improve your mindset each and every day.
@@ -45,9 +54,10 @@ export default  {
 ## Project Setup
 * After cloning and navigating to the repository, run ```npm install``` to install node modules.
 * Move into the api folder using ```cd src/api```.
-* Run ```pip install -r requirements.txt``` to install requirements such as Beautiful Soup, Flask and more.
+* Run ```pip install -r requirements.txt```.
 
 ## Run Project Locally
 * To run the project, navigate to the root directory and type ```npm run serve``` to run the Vue app.
 * Then run the Flask app by typing ```cd src/api``` and ```flask run```.
-	* You should get the output: ```Running on http://127.0.0.1:5000``` if not, close any application runnining on port 5000 before doing ```flask run```
+	* You should get the output: ```Running on http://127.0.0.1:5000``` .
+	* If not, close any application runnining on port 5000 before doing ```flask run```.
