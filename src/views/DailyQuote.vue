@@ -180,7 +180,7 @@ export default {
   font-size: 10rem;
   transform: translateY(-33%);
   line-height: 1;
-  top: 0px;
+  top: 10px;
   left: 20px;
 }
 .blockquote::after {
